@@ -17,13 +17,11 @@ package org.springframework.samples.petclinic.owner;
 
 import java.time.LocalDate;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.samples.petclinic.model.BaseEntity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
 
 /**
  * Simple JavaBean domain object representing a visit.
@@ -31,15 +29,14 @@ import jakarta.validation.constraints.NotBlank;
  * @author Ken Krebs
  * @author Dave Syer
  */
-@Entity
-@Table(name = "visits")
-public class Visit extends BaseEntity {
 
-	@Column(name = "visit_date")
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+@Document(collection = "visits")
+public class Visit extends BaseEntity {
+	@Id
+	private Integer id;
+
 	private LocalDate date;
 
-	@NotBlank
 	private String description;
 
 	/**
@@ -65,4 +62,15 @@ public class Visit extends BaseEntity {
 		this.description = description;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public boolean isNew() {
+		return this.id == null;
+	}
 }
