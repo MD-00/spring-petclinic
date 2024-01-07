@@ -15,16 +15,29 @@
  */
 package org.springframework.samples.petclinic.owner;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.samples.petclinic.model.NamedEntity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 
 /**
  * @author Juergen Hoeller Can be Cat, Dog, Hamster...
  */
-@Entity
-@Table(name = "types")
-public class PetType extends NamedEntity {
 
+@Document(collection = "types")
+public class PetType extends NamedEntity {
+	@Id
+	private Integer id;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public boolean isNew() {
+		return this.id == null;
+	}
 }

@@ -19,19 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.core.style.ToStringCreator;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.samples.petclinic.model.Person;
 import org.springframework.util.Assert;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OrderBy;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.NotBlank;
 
 /**
  * Simple JavaBean domain object representing an owner.
@@ -42,26 +34,19 @@ import jakarta.validation.constraints.NotBlank;
  * @author Michael Isvy
  * @author Oliver Drotbohm
  */
-@Entity
-@Table(name = "owners")
+
+@Document(collection = "owners")
 public class Owner extends Person {
 
-	@Column(name = "address")
-	@NotBlank
+	@Id
+	private Integer id;
+
 	private String address;
 
-	@Column(name = "city")
-	@NotBlank
 	private String city;
 
-	@Column(name = "telephone")
-	@NotBlank
-	@Digits(fraction = 0, integer = 10)
 	private String telephone;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "owner_id")
-	@OrderBy("name")
 	private List<Pet> pets = new ArrayList<>();
 
 	public String getAddress() {
@@ -171,4 +156,15 @@ public class Owner extends Person {
 		pet.addVisit(visit);
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public boolean isNew() {
+		return this.id == null;
+	}
 }
