@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from datetime import date, datetime
 from uuid import UUID, uuid4
 import csv
-from typing import Optional
+from collections import defaultdict
 
 
 FILE_PATHS = {
@@ -28,7 +28,7 @@ class VetRow:
 class Vet:
     first_name: str
     last_name: str
-    speciality: Optional[str]
+    speciality: list[str]
 
     def to_dict(self) -> dict:
         return {
@@ -127,7 +127,9 @@ def main() -> None:
     with open(FILE_PATHS["vets_specs"], newline='') as vet_specs_file:
         reader = csv.reader(vet_specs_file, delimiter=';')
         next(reader, None)
-        vet_specs_map = {int(row[0]): int(row[1]) for row in reader}
+        vet_specs_map = defaultdict(list)
+        for row in reader:
+            vet_specs_map[int(row[0])].append(specs_map.get(int(row[1])))
 
     with open(FILE_PATHS["vets"], newline='') as vet_file:
         reader = csv.reader(vet_file, delimiter=';')
@@ -153,7 +155,7 @@ def main() -> None:
         Vet(
             first_name=row.first_name,
             last_name=row.last_name,
-            speciality=specs_map.get(vet_specs_map.get(int(row.id), -1))
+            speciality=vet_specs_map.get(int(row.id), [])
         ) for row in vet_rows
     ]
 
