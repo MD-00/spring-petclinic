@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.owner;
 
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.Collection;
 

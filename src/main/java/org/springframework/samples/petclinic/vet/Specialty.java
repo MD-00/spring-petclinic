@@ -25,7 +25,7 @@ import org.springframework.samples.petclinic.model.NamedEntity;
  *
  * @author Juergen Hoeller
  */
-@Document(collection = "specialties")
+@Document(collection = "specializations")
 public class Specialty extends NamedEntity {
 	@Id
 	private Integer id;

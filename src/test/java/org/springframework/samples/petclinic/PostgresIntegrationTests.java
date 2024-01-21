@@ -128,9 +128,9 @@ public class PostgresIntegrationTests {
 		private List<EnumerablePropertySource<?>> findPropertiesPropertySources() {
 			List<EnumerablePropertySource<?>> sources = new LinkedList<>();
 			for (PropertySource<?> source : environment.getPropertySources()) {
-				if (source instanceof EnumerablePropertySource enumerable) {
-					sources.add(enumerable);
-				}
+//				if (source instanceof EnumerablePropertySource enumerable) {
+//					sources.add(enumerable);
+//				}
 			}
 			return sources;
 		}

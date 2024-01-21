@@ -34,11 +34,9 @@ import org.springframework.samples.petclinic.model.NamedEntity;
  * @author Sam Brannen
  */
 
-@Document(collection = "pets")
 public class Pet extends NamedEntity {
-	@Id
-	private Integer id;
 
+	private Integer id;
 
 	private LocalDate birthDate;
 

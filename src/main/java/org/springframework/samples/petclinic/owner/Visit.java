@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.owner;
 
+import java.math.BigInteger;
 import java.time.LocalDate;
 
 import org.springframework.data.annotation.Id;
@@ -30,9 +31,8 @@ import org.springframework.samples.petclinic.model.BaseEntity;
  * @author Dave Syer
  */
 
-@Document(collection = "visits")
 public class Visit extends BaseEntity {
-	@Id
+
 	private Integer id;
 
 	private LocalDate date;

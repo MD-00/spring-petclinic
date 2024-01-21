@@ -19,14 +19,16 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.samples.petclinic.model.NamedEntity;
 
+import java.math.BigInteger;
+
 
 /**
  * @author Juergen Hoeller Can be Cat, Dog, Hamster...
  */
 
-@Document(collection = "types")
+
 public class PetType extends NamedEntity {
-	@Id
+
 	private Integer id;
 
 	public Integer getId() {

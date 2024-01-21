@@ -69,6 +69,7 @@ class PetRow:
 
 @dataclass
 class Pet:
+    id: str
     name: str
     birth_date: date
     type: str
@@ -76,6 +77,7 @@ class Pet:
 
     def to_dict(self) -> dict:
         return {
+            "id": self.id,
             "name": self.name,
             "birth_date": self.birth_date,
             "type": self.type,
@@ -168,6 +170,7 @@ def main() -> None:
             telephone=row.telephone,
             pets={
                 str(uuid4()): Pet(
+                    id=int(pet_row.id),
                     name=pet_row.name,
                     birth_date=datetime.strptime(pet_row.birth_date, '%Y-%m-%d'),
                     type=types_map[int(pet_row.type_id)],

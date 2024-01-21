@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.owner;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +40,7 @@ import org.springframework.util.Assert;
 public class Owner extends Person {
 
 	@Id
-	private Integer id;
+	private BigInteger id;
 
 	private String address;
 
@@ -156,11 +157,11 @@ public class Owner extends Person {
 		pet.addVisit(visit);
 	}
 
-	public Integer getId() {
+	public BigInteger getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(BigInteger id) {
 		this.id = id;
 	}
 

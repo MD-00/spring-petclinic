@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.owner;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
@@ -134,7 +135,7 @@ class OwnerController {
 
 	@PostMapping("/owners/{ownerId}/edit")
 	public String processUpdateOwnerForm(Owner owner, BindingResult result,
-			@PathVariable("ownerId") int ownerId) {
+			@PathVariable("ownerId") BigInteger ownerId) {
 		if (result.hasErrors()) {
 			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 		}

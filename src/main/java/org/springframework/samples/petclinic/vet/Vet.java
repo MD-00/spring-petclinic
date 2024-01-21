@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.vet;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -41,7 +42,7 @@ import jakarta.xml.bind.annotation.XmlElement;
 public class Vet extends Person {
 
 	@Id
-	private Integer id;
+	private BigInteger id;
 
 	private Set<Specialty> specialties;
 
@@ -71,11 +72,11 @@ public class Vet extends Person {
 		getSpecialtiesInternal().add(specialty);
 	}
 
-	public Integer getId() {
+	public BigInteger getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(BigInteger id) {
 		this.id = id;
 	}
 
