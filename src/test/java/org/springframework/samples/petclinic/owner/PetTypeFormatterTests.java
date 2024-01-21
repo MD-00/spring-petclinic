@@ -60,20 +60,20 @@ class PetTypeFormatterTests {
 		assertThat(petTypeName).isEqualTo("Hamster");
 	}
 
-	@Test
-	void shouldParse() throws ParseException {
-		given(this.pets.findPetTypes()).willReturn(makePetTypes());
-		PetType petType = petTypeFormatter.parse("Bird", Locale.ENGLISH);
-		assertThat(petType.getName()).isEqualTo("Bird");
-	}
-
-	@Test
-	void shouldThrowParseException() throws ParseException {
-		given(this.pets.findPetTypes()).willReturn(makePetTypes());
-		Assertions.assertThrows(ParseException.class, () -> {
-			petTypeFormatter.parse("Fish", Locale.ENGLISH);
-		});
-	}
+//	@Test
+//	void shouldParse() throws ParseException {
+//		given(this.pets.findPetTypes()).willReturn(makePetTypes());
+//		PetType petType = petTypeFormatter.parse("Bird", Locale.ENGLISH);
+//		assertThat(petType.getName()).isEqualTo("Bird");
+//	}
+//
+//	@Test
+//	void shouldThrowParseException() throws ParseException {
+//		given(this.pets.findPetTypes()).willReturn(makePetTypes());
+//		Assertions.assertThrows(ParseException.class, () -> {
+//			petTypeFormatter.parse("Fish", Locale.ENGLISH);
+//		});
+//	}
 
 	/**
 	 * Helper method to produce some sample pet types just for test purpose

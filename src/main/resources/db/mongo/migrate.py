@@ -77,7 +77,7 @@ class Pet:
 
     def to_dict(self) -> dict:
         return {
-            "id": self.id,
+            "idd": self.id,
             "name": self.name,
             "birthDate": self.birth_date,
             "type": self.type,

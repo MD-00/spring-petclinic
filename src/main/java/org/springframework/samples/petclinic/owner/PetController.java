@@ -15,7 +15,6 @@
  */
 package org.springframework.samples.petclinic.owner;
 
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.Collection;
 
@@ -47,13 +46,17 @@ class PetController {
 	@Autowired
 	private final OwnerRepository owners;
 
-	public PetController(OwnerRepository owners) {
+	@Autowired
+	private final PetTypeRepository petTypes;
+
+	public PetController(OwnerRepository owners, PetTypeRepository petTypes) {
 		this.owners = owners;
+		this.petTypes = petTypes;
 	}
 
 	@ModelAttribute("types")
 	public Collection<PetType> populatePetTypes() {
-		return this.owners.findPetTypes();
+		return this.petTypes.findAll();
 	}
 
 	@ModelAttribute("owner")
@@ -131,7 +134,7 @@ class PetController {
 		// checking if the pet name already exist for the owner
 		if (StringUtils.hasText(petName)) {
 			Pet existingPet = owner.getPet(petName.toLowerCase(), false);
-			if (existingPet != null && existingPet.getId() != pet.getId()) {
+			if (existingPet != null && existingPet.getIdd() != pet.getIdd()) {
 				result.rejectValue("name", "duplicate", "already exists");
 			}
 		}

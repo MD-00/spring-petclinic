@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.samples.petclinic.model.NamedEntity;
 
 
@@ -32,8 +33,7 @@ import org.springframework.samples.petclinic.model.NamedEntity;
  */
 
 public class Pet extends NamedEntity {
-
-	private Integer id;
+	private Integer idd;
 
 	private LocalDate birthDate;
 
@@ -65,15 +65,15 @@ public class Pet extends NamedEntity {
 		getVisits().add(visit);
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getIdd() {
+		return idd;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdd(Integer idd) {
+		this.idd = idd;
 	}
 
 	public boolean isNew() {
-		return this.id == null;
+		return this.idd == null;
 	}
 }

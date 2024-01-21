@@ -15,27 +15,25 @@
  */
 package org.springframework.samples.petclinic.owner;
 
-import org.springframework.data.annotation.Id;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.samples.petclinic.model.NamedEntity;
-
-import java.math.BigInteger;
 
 
 /**
  * @author Juergen Hoeller Can be Cat, Dog, Hamster...
  */
 
-
+@Document(collection = "types")
 public class PetType extends NamedEntity {
 
-	private Integer id;
+	private ObjectId id;
 
-	public Integer getId() {
+	public ObjectId getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(ObjectId id) {
 		this.id = id;
 	}
 

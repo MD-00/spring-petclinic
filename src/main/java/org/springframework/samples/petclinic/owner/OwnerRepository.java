@@ -39,15 +39,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OwnerRepository extends MongoRepository<Owner, ObjectId> {
-
-
-	/**
-	 * Retrieve all {@link PetType}s from the data store.
-	 * @return a Collection of {@link PetType}s.
-	 */
-	@Query("{} , { '_id': 0, 'ptype': 1 }).sort({ 'name': 1 }")
-	List<PetType> findPetTypes();
-
 	/**
 	 * Retrieve {@link Owner}s from the data store by last name, returning all owners
 	 * whose last name <i>starts</i> with the given name.

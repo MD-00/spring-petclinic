@@ -15,7 +15,6 @@
  */
 package org.springframework.samples.petclinic.owner;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +81,15 @@ public class Owner extends Person {
 	public void addPet(Pet pet) {
 		if (pet.isNew()) {
 			getPets().add(pet);
+		}else{
+			for (Pet oneOfPets : getPets()) {
+				if (pet.getIdd().equals(oneOfPets.getIdd())) {
+					oneOfPets.setType(pet.getType());
+					oneOfPets.setBirthDate(pet.getBirthDate());
+					oneOfPets.setName(pet.getName());
+					break;
+				}
+			}
 		}
 	}
 
@@ -102,7 +110,7 @@ public class Owner extends Person {
 	public Pet getPet(Integer id) {
 		for (Pet pet : getPets()) {
 			if (!pet.isNew()) {
-				Integer compId = pet.getId();
+				Integer compId = pet.getIdd();
 				if (compId.equals(id)) {
 					return pet;
 				}
