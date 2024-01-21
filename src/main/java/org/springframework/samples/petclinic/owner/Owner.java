@@ -19,6 +19,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.core.style.ToStringCreator;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -40,7 +41,7 @@ import org.springframework.util.Assert;
 public class Owner extends Person {
 
 	@Id
-	private BigInteger id;
+	private ObjectId id;
 
 	private String address;
 
@@ -157,11 +158,11 @@ public class Owner extends Person {
 		pet.addVisit(visit);
 	}
 
-	public BigInteger getId() {
+	public ObjectId getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(ObjectId id) {
 		this.id = id;
 	}
 

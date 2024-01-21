@@ -17,6 +17,7 @@
 package org.springframework.samples.petclinic.vet;
 
 import org.assertj.core.util.Lists;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledInNativeImage;
@@ -57,7 +58,7 @@ class VetControllerTests {
 		Vet james = new Vet();
 		james.setFirstName("James");
 		james.setLastName("Carter");
-		james.setId(BigInteger.ONE);
+		james.setId(new ObjectId());
 		return james;
 	}
 
@@ -65,11 +66,11 @@ class VetControllerTests {
 		Vet helen = new Vet();
 		helen.setFirstName("Helen");
 		helen.setLastName("Leary");
-		helen.setId(BigInteger.TWO);
+		helen.setId(new ObjectId());
 		Specialty radiology = new Specialty();
 		radiology.setId(1);
 		radiology.setName("radiology");
-		helen.addSpecialty(radiology);
+		helen.addSpecialty(radiology.getName());
 		return helen;
 	}
 

@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.data.annotation.Id;
@@ -42,24 +43,24 @@ import jakarta.xml.bind.annotation.XmlElement;
 public class Vet extends Person {
 
 	@Id
-	private BigInteger id;
+	private ObjectId id;
 
-	private Set<Specialty> specialties;
+	private Set<String> speciality;
 
-	protected Set<Specialty> getSpecialtiesInternal() {
-		if (this.specialties == null) {
-			this.specialties = new HashSet<>();
+	protected Set<String> getSpecialtiesInternal() {
+		if (this.speciality == null) {
+			this.speciality = new HashSet<>();
 		}
-		return this.specialties;
+		return this.speciality;
 	}
 
-	protected void setSpecialtiesInternal(Set<Specialty> specialties) {
-		this.specialties = specialties;
+	protected void setSpecialtiesInternal(Set<String> specialties) {
+		this.speciality = specialties;
 	}
 
 	@XmlElement
-	public List<Specialty> getSpecialties() {
-		List<Specialty> sortedSpecs = new ArrayList<>(getSpecialtiesInternal());
+	public List<String> getSpecialties() {
+		List<String> sortedSpecs = new ArrayList<>(getSpecialtiesInternal());
 		PropertyComparator.sort(sortedSpecs, new MutableSortDefinition("name", true, true));
 		return Collections.unmodifiableList(sortedSpecs);
 	}
@@ -68,15 +69,15 @@ public class Vet extends Person {
 		return getSpecialtiesInternal().size();
 	}
 
-	public void addSpecialty(Specialty specialty) {
+	public void addSpecialty(String specialty) {
 		getSpecialtiesInternal().add(specialty);
 	}
 
-	public BigInteger getId() {
+	public ObjectId getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(ObjectId id) {
 		this.id = id;
 	}
 

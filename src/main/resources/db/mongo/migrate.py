@@ -32,8 +32,8 @@ class Vet:
 
     def to_dict(self) -> dict:
         return {
-            "first_name": self.first_name,
-            "last_name": self.last_name,
+            "firstName": self.first_name,
+            "lastName": self.last_name,
             "speciality": self.speciality
         }
 
@@ -53,7 +53,7 @@ class Visit:
 
     def to_dict(self) -> dict:
         return {
-            "visit_date": self.visit_date,
+            "visitDate": self.visit_date,
             "description": self.description
         }
 
@@ -79,7 +79,7 @@ class Pet:
         return {
             "id": self.id,
             "name": self.name,
-            "birth_date": self.birth_date,
+            "birthDate": self.birth_date,
             "type": self.type,
             "visits": [visit.to_dict() for visit in self.visits]
         }
@@ -106,8 +106,8 @@ class Owner:
 
     def to_dict(self) -> dict:
         return {
-            "first_name": self.first_name,
-            "last_name": self.last_name,
+            "firstName": self.first_name,
+            "lastName": self.last_name,
             "address": self.address,
             "city": self.city,
             "telephone": self.telephone,
@@ -187,7 +187,10 @@ def main() -> None:
 
     client = MongoClient('mongodb://petclinic:petclinic@localhost:27017/')
     db = client['petclinic']
-
+    vets_collection.delete_many({})
+    owners_collection.delete_many({})
+    specs_collection.delete_many({})
+    types_collection.delete_many({})
     vets_collection = db['vets']
     owners_collection = db['owners']
     specs_collection = db["specializations"]
