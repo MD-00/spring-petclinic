@@ -56,6 +56,7 @@ public interface OwnerRepository extends MongoRepository<Owner, ObjectId> {
 	 * found)
 	 */
 
+	@Query("{ 'lastName' : { $regex: ?0, $options: 'i' } }")
 	Page<Owner> findByLastName(@Param("lastName") String lastName, Pageable pageable);
 
 }

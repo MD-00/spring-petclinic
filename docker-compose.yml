@@ -45,5 +45,6 @@ services:
       - ME_CONFIG_MONGODB_SERVER=mongodb
     ports:
       - "8081:8081"
+    restart: always
     profiles:
       - mongodb
