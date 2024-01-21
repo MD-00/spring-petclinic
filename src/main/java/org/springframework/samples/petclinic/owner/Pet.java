@@ -20,9 +20,6 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.samples.petclinic.model.NamedEntity;
 
 
@@ -40,7 +37,7 @@ public class Pet extends NamedEntity {
 
 	private LocalDate birthDate;
 
-	private PetType type;
+	private String type;
 
 	private Set<Visit> visits = new LinkedHashSet<>();
 
@@ -52,11 +49,11 @@ public class Pet extends NamedEntity {
 		return this.birthDate;
 	}
 
-	public PetType getType() {
+	public String getType() {
 		return this.type;
 	}
 
-	public void setType(PetType type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 

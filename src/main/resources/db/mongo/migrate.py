@@ -102,7 +102,7 @@ class Owner:
     address: str
     city: str
     telephone: str
-    pets: dict[UUID: Pet]
+    pets: dict[Pet]
 
     def to_dict(self) -> dict:
         return {
@@ -111,7 +111,7 @@ class Owner:
             "address": self.address,
             "city": self.city,
             "telephone": self.telephone,
-            "pets": {pet_id: pet.to_dict() for pet_id, pet in self.pets.items()}
+            "pets": [pet.to_dict() for pet_id, pet in self.pets.items()]
         }
 
 
@@ -187,14 +187,14 @@ def main() -> None:
 
     client = MongoClient('mongodb://petclinic:petclinic@localhost:27017/')
     db = client['petclinic']
-    vets_collection.delete_many({})
-    owners_collection.delete_many({})
-    specs_collection.delete_many({})
-    types_collection.delete_many({})
     vets_collection = db['vets']
     owners_collection = db['owners']
     specs_collection = db["specializations"]
     types_collection = db["types"]
+    vets_collection.delete_many({})
+    owners_collection.delete_many({})
+    specs_collection.delete_many({})
+    types_collection.delete_many({})
 
     vets_collection.insert_many([vet.to_dict() for vet in vets])
     owners_collection.insert_many([owner.to_dict() for owner in owners])

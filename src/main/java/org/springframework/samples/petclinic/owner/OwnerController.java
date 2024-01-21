@@ -60,7 +60,7 @@ class OwnerController {
 	}
 
 	@ModelAttribute("owner")
-	public Owner findOwner(@PathVariable(name = "ownerId", required = false) Integer ownerId) {
+	public Owner findOwner(@PathVariable(name = "ownerId", required = false) ObjectId ownerId) {
 		return ownerId == null ? new Owner() : this.owners.findById(ownerId).orElseThrow();
 	}
 
@@ -128,7 +128,7 @@ class OwnerController {
 	}
 
 	@GetMapping("/owners/{ownerId}/edit")
-	public String initUpdateOwnerForm(@PathVariable("ownerId") int ownerId, Model model) {
+	public String initUpdateOwnerForm(@PathVariable("ownerId") ObjectId ownerId, Model model) {
 		Owner owner = this.owners.findById(ownerId).orElseThrow();
 		model.addAttribute(owner);
 		return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
@@ -152,7 +152,7 @@ class OwnerController {
 	 * @return a ModelMap with the model attributes for the view
 	 */
 	@GetMapping("/owners/{ownerId}")
-	public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
+	public ModelAndView showOwner(@PathVariable("ownerId") ObjectId ownerId) {
 		ModelAndView mav = new ModelAndView("owners/ownerDetails");
 		Owner owner = this.owners.findById(ownerId).orElseThrow();
 		mav.addObject(owner);

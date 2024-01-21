@@ -19,6 +19,7 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.Collection;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -56,7 +57,7 @@ class PetController {
 	}
 
 	@ModelAttribute("owner")
-	public Owner findOwner(@PathVariable("ownerId") int ownerId) {
+	public Owner findOwner(@PathVariable("ownerId") ObjectId ownerId) {
 
 		Owner owner = this.owners.findById(ownerId).orElseThrow();
 		if (owner == null) {
@@ -66,7 +67,7 @@ class PetController {
 	}
 
 	@ModelAttribute("pet")
-	public Pet findPet(@PathVariable("ownerId") int ownerId,
+	public Pet findPet(@PathVariable("ownerId") ObjectId ownerId,
 			@PathVariable(name = "petId", required = false) Integer petId) {
 
 		Owner owner = this.owners.findById(ownerId).orElseThrow();
