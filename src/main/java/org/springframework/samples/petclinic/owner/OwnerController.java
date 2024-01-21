@@ -128,20 +128,21 @@ class OwnerController {
 	}
 
 	@GetMapping("/owners/{ownerId}/edit")
-	public String initUpdateOwnerForm(@PathVariable("ownerId") ObjectId ownerId, Model model) {
-		Owner owner = this.owners.findById(ownerId).orElseThrow();
+	public String initUpdateOwnerForm(@PathVariable("ownerId") String ownerId, Model model) {
+		ObjectId objectId = new ObjectId(ownerId);
+		Owner owner = this.owners.findById(objectId).orElseThrow();
 		model.addAttribute(owner);
 		return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 	}
 
 	@PostMapping("/owners/{ownerId}/edit")
 	public String processUpdateOwnerForm(Owner owner, BindingResult result,
-			@PathVariable("ownerId") ObjectId ownerId) {
+			@PathVariable("ownerId") String ownerId) {
 		if (result.hasErrors()) {
 			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 		}
-
-		owner.setId(ownerId);
+		ObjectId objectId = new ObjectId(ownerId);
+		owner.setId(objectId);
 		this.owners.save(owner);
 		return "redirect:/owners/{ownerId}";
 	}
@@ -152,9 +153,10 @@ class OwnerController {
 	 * @return a ModelMap with the model attributes for the view
 	 */
 	@GetMapping("/owners/{ownerId}")
-	public ModelAndView showOwner(@PathVariable("ownerId") ObjectId ownerId) {
+	public ModelAndView showOwner(@PathVariable("ownerId") String ownerId) {
 		ModelAndView mav = new ModelAndView("owners/ownerDetails");
-		Owner owner = this.owners.findById(ownerId).orElseThrow();
+		ObjectId objectId = new ObjectId(ownerId);
+		Owner owner = this.owners.findById(objectId).orElseThrow();
 		mav.addObject(owner);
 		return mav;
 	}

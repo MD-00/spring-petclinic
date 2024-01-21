@@ -85,7 +85,8 @@ public class Owner extends Person {
 			for (Pet oneOfPets : getPets()) {
 				if (pet.getIdd().equals(oneOfPets.getIdd())) {
 					oneOfPets.setType(pet.getType());
-					oneOfPets.setBirthDate(pet.getBirthDate());
+					if(pet.getBirthDate() != null)
+						oneOfPets.setBirthDate(pet.getBirthDate());
 					oneOfPets.setName(pet.getName());
 					break;
 				}

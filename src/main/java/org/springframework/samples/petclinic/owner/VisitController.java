@@ -58,9 +58,10 @@ class VisitController {
 	 * @return Pet
 	 */
 	@ModelAttribute("visit")
-	public Visit loadPetWithVisit(@PathVariable("ownerId") ObjectId ownerId, @PathVariable("petId") int petId,
+	public Visit loadPetWithVisit(@PathVariable("ownerId") String ownerId, @PathVariable("petId") int petId,
 								  Map<String, Object> model) {
-		Owner owner = this.owners.findById(ownerId).orElseThrow();
+		ObjectId objectId = new ObjectId(ownerId);
+		Owner owner = this.owners.findById(objectId).orElseThrow();
 
 		Pet pet = owner.getPet(petId);
 		model.put("pet", pet);
