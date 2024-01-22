@@ -180,7 +180,7 @@ def main() -> None:
                             description=visit_row.description
                         ) for visit_row in visits_rows
                     ]
-                ) for pet_row in pet_rows
+                ) for pet_row in pet_rows if pet_row.owner_id == row.id
             }
         ) for row in owner_rows
     ]
